@@ -1,15 +1,14 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  signInWithPopup,
   signInWithRedirect,
+  signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
-
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC5YhKeaSZ4QLqezVi7V9JOhIn21YCFc5A",
   authDomain: "crwn-clothing-9daaf.firebaseapp.com",
@@ -19,7 +18,6 @@ const firebaseConfig = {
   appId: "1:455576133448:web:dee756e6e6ebc02c2a9d7d",
 };
 
-// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
@@ -69,4 +67,10 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+
+  return await signInWithEmailAndPassword(auth, email, password);
 };
